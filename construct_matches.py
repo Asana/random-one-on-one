@@ -28,6 +28,17 @@ class ConstructMatches(object):
     def compatible_match_preferences(self, member1, member2):
         """ Checks if match preferences between 2 given members are compatible"""
 
+        no_team = "None (default)"
+        m1_team = self._get_custom_field_value(member1, "Team", no_team)
+        m2_team = self._get_custom_field_value(member2, "Team", no_team)
+        m1_team = None if m1_team == no_team else m1_team
+        m2_team = None if m2_team == no_team else m2_team
+
+        if m1_team is None or m2_team is None:
+            # Preferences require a Team field to be set on both members in order to compare
+            # Teams with Preferences
+            return True
+
         no_preference = "No preference (default)"
         only_same_team_preference = "Only match with same team"
         only_other_teams_preference = "Only match with other teams"
@@ -40,25 +51,8 @@ class ConstructMatches(object):
         if m1_preference is None and m2_preference is None:
             return True  # Both members have no preferences and are therefor a suitable match
 
-        no_team = "None (default)"
-        m1_team = self._get_custom_field_value(member1, "Team", no_team)
-        m2_team = self._get_custom_field_value(member2, "Team", no_team)
-        m1_team = None if m1_team == no_team else m1_team
-        m2_team = None if m2_team == no_team else m2_team
-
-        if m1_team is None and m2_team is None:
-            # Here one or both members have some match preference but neither has set a team
-            # We result this in a match as both members have forgotten to set their team
-            return True
-
-        # We know that at least one member has a team (due to check above)
-        # If a member has no team, we disregard that members preference
-        # as it can't compare its team to the other members team.
-        if m1_team is None and m2_preference is None:
-            return True  # Member 2 has no preference and member 1 has no valid preference
-        if m2_team is None and m1_preference is None:
-            return True  # Member 1 has no preference and member 2 has no valid preference
-
+        # We now know that both members have set their Team field and at least one of them
+        # has any preference. Lets find out if any Preference makes this an incompatible match
         are_on_same_team = m1_team == m2_team
         if are_on_same_team and only_other_teams_preference not in [m1_preference, m2_preference]:
             return True  # Team members that are ok with being matched with other team members
@@ -128,6 +122,7 @@ class ConstructMatches(object):
 
     def construct_matches(self):
         if len(self.members) == 2:
+            # only 2 members, lets match them
             self.match(self.members.pop(), self.members.pop())
         if len(self.members) == 1:
             self.unmatched_member = self.members.pop()
