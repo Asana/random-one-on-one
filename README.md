@@ -27,9 +27,10 @@ We recommend saving this project as a template, so that other groups can create 
 
 ### Run the script
 `python oneonone.py --pat=<personal_access_token> --workspace-gid=<workspace_gid> --user-gid=<user_id> --task-name=<task_name>`
+
 For further options run `python oneonone.py --help`
 
-Have a happy random one on one
+Enjoy your random one on one
 
 ## Installing a Virtual Environment for Python
 
