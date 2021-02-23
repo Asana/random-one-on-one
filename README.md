@@ -25,6 +25,11 @@ Make sure that you have created an Asana project with
 For each member, add a task to the **Member** section and assign to the corresponding user.
 We recommend saving this project as a template, so that other groups can create their own Random one on one project easily.
 
+### Run the script
+`python oneonone.py --pat=<personal_access_token> --workspace-gid=<workspace_gid> --user-gid=<user_id> --task-name=<task_name>`
+For further options run `python oneonone.py --help`
+
+Have a happy random one on one
 
 ## Installing a Virtual Environment for Python
 
@@ -34,8 +39,3 @@ setting up a virtual environment for Python, or use the following TL;DR version:
 * run `python3 -m venv v-env` to create a virtual environment
 * run `source v-env/bin/activate` to activate and enter your virtual environment
 * once activated, run `deactivate` to deactivate and leave your virtual environment
-
-
-`python oneonone.py --pat=<personal_access_token> --workspace-gid=<workspace_gid> --user-gid=<user_id> --task-name=<task_name>`
-For further options run `python oneonone.py --help`
-
