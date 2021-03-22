@@ -37,4 +37,4 @@ jobs:
     - name: Test
       run: |
         python oneonone_tests.py
-        python test_construct_matches.py
+        python construct_matches_tests.py
