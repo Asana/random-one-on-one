@@ -14,7 +14,8 @@ Make sure that you have created an Asana project with
 - A task assigned to a user. Name the task to something destinct as the script finds all tasks with a given name assigned to this user
 
 For each member, add a task to the **Member** section and assign to a participating member.
-We recommend saving this project as a template, so that other groups can create their own Random one on one project easily.
+
+**We recommend saving this project as a template, so that other groups can create their own Random one on one project easily.**
 
 ![createrandomproject](https://user-images.githubusercontent.com/9914844/112172529-b333ef00-8bec-11eb-8b99-a9d10887a61d.gif)
 
@@ -32,6 +33,7 @@ import asana_random_one_on_one
 asana_random_one_on_one(personal_access_token, workspace_gid, user_gid, task_name)
 ```
 Or via command line
+
 `python3 -m asana_random_one_on_one --pat=<personal_access_token> --workspace-gid=<workspace_gid> --user-gid=<user_id> --task-name=<task_name>`
 
 
@@ -72,15 +74,14 @@ optional arguments:
 Enjoy your random one on one
 
 
-### Contributing to the project
+## Contributing to the project
 We recommend setting up a virtual environment to install and run your python environment. By doing so, you can eliminate
 the risk that Asana Random one on one python dependencies and settings will be mixed up with any such dependencies and settings that you
 may be using in other projects. Once you have that activated (see [Installing a Virtual Environment for Python](#installing-a-virtual-environment-for-python) below), you should install all required python dependencies using
 
-`pip3 install -r requirements.txt`.
-`pip3 install -r requirements-dev.txt`.
+`pip3 install -r requirements.txt -r requirements-dev.txt`
 
-## Installing a Virtual Environment for Python
+### Installing a Virtual Environment for Python
 
 See [these instructions](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/) for help in
 setting up a virtual environment for Python, or use the following TL;DR version:
