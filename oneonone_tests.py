@@ -14,10 +14,7 @@ def create_user(start_date=None, end_date=None):
     return {
         "gid": "1234",
         "name": "test@test.com",
-        "vacation_dates": {
-            "start_date": start_date,
-            "end_date": end_date
-        }
+        "vacation_dates": {"start_date": start_date, "end_date": end_date},
     }
 
 

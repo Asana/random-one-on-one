@@ -23,18 +23,15 @@ def create_members_with_preferences(list_of_members):
     # list_of_members is a list of ["id", "Team", option] where option is an integer either 0 or 1
     options = {Same: "Only match with same team", Other: "Only match with other teams"}
     return [
-        {
-            "id": member[0],
-            "Team": member[1],
-            "Match Preference": options.get(member[2])
-        } for member in list_of_members
+        {"id": member[0], "Team": member[1], "Match Preference": options.get(member[2])}
+        for member in list_of_members
     ]
 
 
 class TestConstructMatches(unittest.TestCase):
     def _assert(self, m, members, data, unmatched):
-        matched_members = [member['id'] for member in m.matched_members]
-        unmatched_member = m.unmatched_member['id'] if m.unmatched_member else None
+        matched_members = [member["id"] for member in m.matched_members]
+        unmatched_member = m.unmatched_member["id"] if m.unmatched_member else None
         self.assertEqual(matched_members, members)
         self.assertEqual(m.match_data, data)
         self.assertEqual(unmatched_member, unmatched)
@@ -52,7 +49,7 @@ class TestConstructMatches(unittest.TestCase):
         m.construct_matches()
 
         expected_data = {"A": "B", "B": "A"}
-        expected_matches = ['B', 'A']
+        expected_matches = ["B", "A"]
         self._assert(m, expected_matches, expected_data, None)
 
     def test_previous_unmatched_doesnt_change_if_no_unmatch_member_this_time(self):
@@ -62,7 +59,7 @@ class TestConstructMatches(unittest.TestCase):
         m.construct_matches()
 
         expected_data = {"A": "B", "B": "A", "unmatched": "C"}
-        expected_matches = ['B', 'A']
+        expected_matches = ["B", "A"]
         self._assert(m, expected_matches, expected_data, None)
 
     def test_first_match_valid_leaving_last_member_unmatched(self):
@@ -72,17 +69,19 @@ class TestConstructMatches(unittest.TestCase):
         m.construct_matches()
 
         expected_data = {"A": "C", "C": "A", "unmatched": "B"}
-        expected_matches = ['C', 'A']
+        expected_matches = ["C", "A"]
         self._assert(m, expected_matches, expected_data, "B")
 
-    def test_first_match_valid_leaving_last_member_unmatched_keeps_its_previous_match(self):
+    def test_first_match_valid_leaving_last_member_unmatched_keeps_its_previous_match(
+        self,
+    ):
         previous_matches = {"B": "E"}
         members = create_members(["A", "B", "C"])
         m = ConstructMatches(members, previous_matches, member_id, get_custom_field)
         m.construct_matches()
 
         expected_data = {"A": "C", "C": "A", "B": "E", "unmatched": "B"}
-        expected_matches = ['C', 'A']
+        expected_matches = ["C", "A"]
         self._assert(m, expected_matches, expected_data, "B")
 
     def test_no_valid_match_defaults_on_last_match_possible(self):
@@ -105,7 +104,9 @@ class TestConstructMatches(unittest.TestCase):
         expected_matches = ["C", "D", "A", "B"]
         self._assert(m, expected_matches, expected_data, None)
 
-    def test_last_match_invalid_and_cannot_break_up_anything_results_in_a_match_anyway(self):
+    def test_last_match_invalid_and_cannot_break_up_anything_results_in_a_match_anyway(
+        self,
+    ):
         previous_matches = {"A": "B", "B": "A", "C": "A", "D": "A"}
         members = create_members(["A", "B", "C", "D"])
         m = ConstructMatches(members, previous_matches, member_id, get_custom_field)
@@ -131,7 +132,14 @@ class TestConstructMatches(unittest.TestCase):
         m = ConstructMatches(members, previous_matches, member_id, get_custom_field)
         m.construct_matches()
 
-        expected_data = {"A": "B", "E": "B", "B": "E", "D": "C", "C": "D", "unmatched": "A"}
+        expected_data = {
+            "A": "B",
+            "E": "B",
+            "B": "E",
+            "D": "C",
+            "C": "D",
+            "unmatched": "A",
+        }
         expected_matches = ["E", "B", "D", "C"]
         self._assert(m, expected_matches, expected_data, "A")
 
@@ -158,7 +166,12 @@ class TestConstructMatches(unittest.TestCase):
 
     def test_only_match_with_other_team(self):
         members = create_members_with_preferences(
-            [["A", "T2", Other], ["B", "T1", Other], ["C", "T1", Other], ["D", "T2", Other]]
+            [
+                ["A", "T2", Other],
+                ["B", "T1", Other],
+                ["C", "T1", Other],
+                ["D", "T2", Other],
+            ]
         )
         m = ConstructMatches(members, {}, member_id, get_custom_field)
         m.construct_matches()
@@ -169,7 +182,12 @@ class TestConstructMatches(unittest.TestCase):
 
     def test_unmatchable_member_will_match_with_a_previous_unmatchable_member(self):
         members = create_members_with_preferences(
-            [["A", "T1", Other], ["B", "T1", Other], ["C", "T1", Other], ["D", "T1", Other]]
+            [
+                ["A", "T1", Other],
+                ["B", "T1", Other],
+                ["C", "T1", Other],
+                ["D", "T1", Other],
+            ]
         )
         m = ConstructMatches(members, {}, member_id, get_custom_field)
         m.construct_matches()
@@ -198,35 +216,72 @@ class TestConstructMatches(unittest.TestCase):
     def test_members_without_the_team_field_results_in_a_match(self):
         # Test all combinations of Case 1 and 2
         # All combinations of one member having no Team
-        members1 = create_members_with_preferences([["A", None, None], ["B", None, None]])
-        members2 = create_members_with_preferences([["A", None, None], ["B", None, Same]])
-        members3 = create_members_with_preferences([["A", None, None], ["B", "T1", None]])
-        members4 = create_members_with_preferences([["A", None, None], ["B", "T1", Same]])
-        members5 = create_members_with_preferences([["A", None, Same], ["B", None, None]])
-        members6 = create_members_with_preferences([["A", None, Same], ["B", None, Same]])
-        members7 = create_members_with_preferences([["A", None, Same], ["B", "T1", None]])
-        members8 = create_members_with_preferences([["A", None, Same], ["B", "T1", Same]])
+        members1 = create_members_with_preferences(
+            [["A", None, None], ["B", None, None]]
+        )
+        members2 = create_members_with_preferences(
+            [["A", None, None], ["B", None, Same]]
+        )
+        members3 = create_members_with_preferences(
+            [["A", None, None], ["B", "T1", None]]
+        )
+        members4 = create_members_with_preferences(
+            [["A", None, None], ["B", "T1", Same]]
+        )
+        members5 = create_members_with_preferences(
+            [["A", None, Same], ["B", None, None]]
+        )
+        members6 = create_members_with_preferences(
+            [["A", None, Same], ["B", None, Same]]
+        )
+        members7 = create_members_with_preferences(
+            [["A", None, Same], ["B", "T1", None]]
+        )
+        members8 = create_members_with_preferences(
+            [["A", None, Same], ["B", "T1", Same]]
+        )
 
         memberA_no_team_no_preference = [
-            members1, members2, members3, members4, members5, members6, members7, members8
+            members1,
+            members2,
+            members3,
+            members4,
+            members5,
+            members6,
+            members7,
+            members8,
         ]
         m = ConstructMatches([], {}, member_id, get_custom_field)
 
-        error_msg = "MemberA is without a team, should be a compatible match with MemberB: {}"
+        error_msg = (
+            "MemberA is without a team, should be a compatible match with MemberB: {}"
+        )
         for member_pair in memberA_no_team_no_preference:
             # All possible combination of Case 1
-            match_result = m.compatible_match_preferences(member_pair[0], member_pair[1])
+            match_result = m.compatible_match_preferences(
+                member_pair[0], member_pair[1]
+            )
             self.assertTrue(match_result, error_msg.format(member_pair[1]))
             # All possible combination of Case 2 (by switching A and B)
-            match_result = m.compatible_match_preferences(member_pair[1], member_pair[0])
+            match_result = m.compatible_match_preferences(
+                member_pair[1], member_pair[0]
+            )
             self.assertTrue(match_result, error_msg.format(member_pair[1]))
 
     def test_neither_member_has_set_the_preference_field(self):
         # Test all combinations of Case 3
-        members1 = create_members_with_preferences([["A", None, None], ["B", None, None]])
-        members2 = create_members_with_preferences([["A", None, None], ["B", "T1", None]])
-        members3 = create_members_with_preferences([["A", "T1", None], ["B", None, None]])
-        members4 = create_members_with_preferences([["A", "T1", None], ["B", "T1", None]])
+        members1 = create_members_with_preferences(
+            [["A", None, None], ["B", None, None]]
+        )
+        members2 = create_members_with_preferences(
+            [["A", None, None], ["B", "T1", None]]
+        )
+        members3 = create_members_with_preferences(
+            [["A", "T1", None], ["B", None, None]]
+        )
+        members4 = create_members_with_preferences(
+            [["A", "T1", None], ["B", "T1", None]]
+        )
 
         m = ConstructMatches([], {}, member_id, get_custom_field)
 
@@ -240,13 +295,21 @@ class TestConstructMatches(unittest.TestCase):
     def test_both_members_have_teams_only_one_has_preferences(self):
         # Test all combinations of Case 4 and 5
         # On the same team, one wants to match with members from same team
-        members1 = create_members_with_preferences([["A", "T1", Same], ["B", "T1", None]])
+        members1 = create_members_with_preferences(
+            [["A", "T1", Same], ["B", "T1", None]]
+        )
         # Not on the same team, one wants to match with members from same team
-        members2 = create_members_with_preferences([["A", "T1", Same], ["B", "T2", None]])
+        members2 = create_members_with_preferences(
+            [["A", "T1", Same], ["B", "T2", None]]
+        )
         # On the same team, one wants to match with members from another team
-        members3 = create_members_with_preferences([["A", "T1", Other], ["B", "T1", None]])
+        members3 = create_members_with_preferences(
+            [["A", "T1", Other], ["B", "T1", None]]
+        )
         # Not on the same team, one wants to match with members from another team
-        members4 = create_members_with_preferences([["A", "T1", Other], ["B", "T2", None]])
+        members4 = create_members_with_preferences(
+            [["A", "T1", Other], ["B", "T2", None]]
+        )
 
         m = ConstructMatches([], {}, member_id, get_custom_field)
 
@@ -265,13 +328,21 @@ class TestConstructMatches(unittest.TestCase):
     def test_both_members_have_teams_and_preferences(self):
         # Test all combinations of Case 6
         # On the same team, one wants to match with members from same team, the other doesn't
-        members1 = create_members_with_preferences([["A", "T1", Same], ["B", "T1", Other]])
+        members1 = create_members_with_preferences(
+            [["A", "T1", Same], ["B", "T1", Other]]
+        )
         # On the same team, both want to match with members from same team
-        members2 = create_members_with_preferences([["A", "T1", Same], ["B", "T1", Same]])
+        members2 = create_members_with_preferences(
+            [["A", "T1", Same], ["B", "T1", Same]]
+        )
         # Not on the same team, one wants to match with members from same team, the other doesn't
-        members3 = create_members_with_preferences([["A", "T1", Same], ["B", "T2", Other]])
+        members3 = create_members_with_preferences(
+            [["A", "T1", Same], ["B", "T2", Other]]
+        )
         # Not on the same team, both want to match with members from other teams
-        members4 = create_members_with_preferences([["A", "T1", Other], ["B", "T2", Other]])
+        members4 = create_members_with_preferences(
+            [["A", "T1", Other], ["B", "T2", Other]]
+        )
 
         m = ConstructMatches([], {}, member_id, get_custom_field)
 

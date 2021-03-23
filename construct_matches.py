@@ -21,9 +21,10 @@ class ConstructMatches(object):
 
     def got_matched_last_time(self, member1, member2):
         m_id1, m_id2 = self.member_id(member1), self.member_id(member2)
-        return self.previous_match_data.get(m_id1) == m_id2 or self.previous_match_data.get(
-            m_id2
-        ) == m_id1
+        return (
+            self.previous_match_data.get(m_id1) == m_id2
+            or self.previous_match_data.get(m_id2) == m_id1
+        )
 
     def compatible_match_preferences(self, member1, member2):
         """ Checks if match preferences between 2 given members are compatible"""
@@ -43,8 +44,12 @@ class ConstructMatches(object):
         only_same_team_preference = "Only match with same team"
         only_other_teams_preference = "Only match with other teams"
 
-        m1_preference = self._get_custom_field_value(member1, "Match Preference", no_preference)
-        m2_preference = self._get_custom_field_value(member2, "Match Preference", no_preference)
+        m1_preference = self._get_custom_field_value(
+            member1, "Match Preference", no_preference
+        )
+        m2_preference = self._get_custom_field_value(
+            member2, "Match Preference", no_preference
+        )
         m1_preference = None if m1_preference == no_preference else m1_preference
         m2_preference = None if m2_preference == no_preference else m2_preference
 
@@ -54,16 +59,24 @@ class ConstructMatches(object):
         # We now know that both members have set their Team field and at least one of them
         # has any preference. Lets find out if any Preference makes this an incompatible match
         are_on_same_team = m1_team == m2_team
-        if are_on_same_team and only_other_teams_preference not in [m1_preference, m2_preference]:
+        if are_on_same_team and only_other_teams_preference not in [
+            m1_preference,
+            m2_preference,
+        ]:
             return True  # Team members that are ok with being matched with other team members
-        if not are_on_same_team and only_same_team_preference not in [m1_preference, m2_preference]:
+        if not are_on_same_team and only_same_team_preference not in [
+            m1_preference,
+            m2_preference,
+        ]:
             return True  # Not team members that are ok with being matched outside of their team
 
         return False
 
     def can_be_matched(self, m1, m2):
         # Check if 2 members did not get matched last time and have compatible match preferences
-        return not self.got_matched_last_time(m1, m2) and self.compatible_match_preferences(m1, m2)
+        return not self.got_matched_last_time(
+            m1, m2
+        ) and self.compatible_match_preferences(m1, m2)
 
     def match(self, m1, m2):
         self.matched_members.extend([m1, m2])
@@ -113,7 +126,8 @@ class ConstructMatches(object):
             # First we try and see if m1 can match with m2 and then if m1 can match with m3
             # If either is possible we break up the match for m2:m3
             if self.try_to_break_up_and_create_a_new_match(
-                    m1, m2, m3) or self.try_to_break_up_and_create_a_new_match(m1, m3, m2):
+                m1, m2, m3
+            ) or self.try_to_break_up_and_create_a_new_match(m1, m3, m2):
                 # Break up this match since they got matched with m1 and another available member
                 self.matched_members.pop(i + 1)
                 self.matched_members.pop(i)
@@ -134,7 +148,9 @@ class ConstructMatches(object):
                 if self.find_and_create_valid_match_for_member(member1):
                     continue
                 # Try to break up a match to do a new match
-                if self.find_and_create_match_that_breaks_up_and_rematches_member(member1):
+                if self.find_and_create_match_that_breaks_up_and_rematches_member(
+                    member1
+                ):
                     continue
                 # Edge case, no valid match can be made between the last two and the rest so they get matched
                 elif len(self.members) == 1:
@@ -173,7 +189,9 @@ class ConstructMatches(object):
             # matches, due to frequency, it will be overwritten by this weeks unmatched member
             # https://app.asana.com/0/1148284538006491/1149538479691025/f
             self.match_data["unmatched"] = self.member_id(self.unmatched_member)
-        elif self.match_data.get("unmatched") in [self.member_id(m) for m in self.matched_members]:
+        elif self.match_data.get("unmatched") in [
+            self.member_id(m) for m in self.matched_members
+        ]:
             # Unmatched from previous matches got matched. So no one will receive priority next week
             self.match_data["unmatched"] = ""
         # Here we let the unmatched data stay the same from previous matches
