@@ -36,5 +36,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test
       run: |
-        python oneonone_tests.py
-        python construct_matches_tests.py
+        python3 -m unittest test/*test*

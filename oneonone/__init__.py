@@ -7,7 +7,7 @@ import json
 from datetime import datetime, timedelta
 import asana
 
-from construct_matches import ConstructMatches
+from oneonone.construct_matches import ConstructMatches
 
 WORK_SPACE_GID = None
 MANAGE_ONE_ON_ONE_PROJECT_EXPECTED_TASK_NAME = (

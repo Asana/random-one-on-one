@@ -1,7 +1,7 @@
 from __future__ import print_function
 import unittest
 
-from construct_matches import ConstructMatches
+from oneonone.construct_matches import ConstructMatches
 
 Same = "SameTeam"
 Other = "OtherTeam"
