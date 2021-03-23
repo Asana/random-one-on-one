@@ -3,7 +3,11 @@ A coffee walk / sit down with someone helps with shaking things up and helps co-
 You can create an Asana project for your team / office / department or any internal grouping of your choice and start having random one on ones within that group.
 
 ### Installation
-pip3 install asana-random-one-on-one
+`pip3 install asana-random-one-on-one`
+
+or
+
+`git clone https://github.com/Asana/random-one-on-one.git`
 
 ### Create an Asana project for the random one on ones
 You will need to create an Asana project 
@@ -33,6 +37,8 @@ import asana_random_one_on_one
 asana_random_one_on_one(personal_access_token, workspace_gid, user_gid, task_name)
 ```
 Or via command line
+
+`git clone https://github.com/Asana/random-one-on-one.git`
 
 `python3 -m asana_random_one_on_one --pat=<personal_access_token> --workspace-gid=<workspace_gid> --user-gid=<user_id> --task-name=<task_name>`
 
