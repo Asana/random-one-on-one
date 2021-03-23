@@ -5,10 +5,6 @@ You can create an Asana project for your team / office / department or any inter
 ### Installation
 `pip3 install asana-random-one-on-one`
 
-or
-
-`git clone https://github.com/Asana/random-one-on-one.git`
-
 ### Create an Asana project for the random one on ones
 You will need to create an Asana project 
 The project will be used to schedule and store upcoming random one on one meetings for participating members.
@@ -36,9 +32,11 @@ Either via package
 import asana_random_one_on_one
 asana_random_one_on_one(personal_access_token, workspace_gid, user_gid, task_name)
 ```
-Or via command line
+Or, alternatively, you can clone the repo and run via command line
 
 `git clone https://github.com/Asana/random-one-on-one.git`
+
+Then go through [Installing requirements](#installing-requirements)
 
 `python3 -m asana_random_one_on_one --pat=<personal_access_token> --workspace-gid=<workspace_gid> --user-gid=<user_id> --task-name=<task_name>`
 
@@ -81,9 +79,12 @@ Enjoy your random one on one
 
 
 ## Contributing to the project
+### Installing requirements
+
 We recommend setting up a virtual environment to install and run your python environment. By doing so, you can eliminate
 the risk that Asana Random one on one python dependencies and settings will be mixed up with any such dependencies and settings that you
-may be using in other projects. Once you have that activated (see [Installing a Virtual Environment for Python](#installing-a-virtual-environment-for-python) below), you should install all required python dependencies using
+may be using in other projects.
+Once you have that activated (see [Installing a Virtual Environment for Python](#installing-a-virtual-environment-for-python) below), you should install all required python dependencies using
 
 `pip3 install -r requirements.txt -r requirements-dev.txt`
 
