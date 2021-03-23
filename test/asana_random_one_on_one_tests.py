@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime, timedelta
 
-from oneonone import oneonone
+from asana_random_one_on_one import asana_random_one_on_one as oneonone
 
 
 def create_user(start_date=None, end_date=None):

@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="oneonone",
-    packages=["oneonone"],
+    name="asana_random_one_on_one",
+    packages=["asana_random_one_on_one"],
     version="0.0.1",
     author="Asana Inc",
     license="MIT",

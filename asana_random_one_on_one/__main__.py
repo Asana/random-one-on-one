@@ -1,4 +1,4 @@
-from oneonone import oneonone
+from asana_random_one_on_one import asana_random_one_on_one as oneonone
 import argparse
 
 if __name__ == "__main__":

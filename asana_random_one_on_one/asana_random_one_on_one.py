@@ -6,8 +6,8 @@ import json
 from datetime import datetime, timedelta
 import asana
 
-from oneonone.config import Config
-from oneonone.construct_matches import ConstructMatches
+from asana_random_one_on_one.config import Config
+from asana_random_one_on_one.construct_matches import ConstructMatches
 
 
 def next_friday():

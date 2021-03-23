@@ -1,7 +1,7 @@
 from __future__ import print_function
 import unittest
 
-from oneonone.construct_matches import ConstructMatches
+from asana_random_one_on_one.construct_matches import ConstructMatches
 
 Same = "SameTeam"
 Other = "OtherTeam"
