@@ -41,7 +41,9 @@ class TestOneOnOne(unittest.TestCase):
         self.assertTrue(oneonone.user_is_away(user))
 
     def test_user_is_away_part_of_this_week(self):
-        user = create_user(start_date=fmt(self.WEDNESDAY), end_date=fmt(self.THIS_FRIDAY))
+        user = create_user(
+            start_date=fmt(self.WEDNESDAY), end_date=fmt(self.THIS_FRIDAY)
+        )
         self.assertFalse(oneonone.user_is_away(user))
 
     def test_user_is_away_this_friday(self):
