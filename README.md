@@ -16,7 +16,7 @@ Make sure that you have created an Asana project with
 For each member, add a task to the **Member** section and assign to a participating member.
 We recommend saving this project as a template, so that other groups can create their own Random one on one project easily.
 
-![image](https://user-images.githubusercontent.com/9914844/112167248-369f1180-8be8-11eb-9ab5-9b6f02a9262f.png)
+![createrandomproject](https://user-images.githubusercontent.com/9914844/112172529-b333ef00-8bec-11eb-8b99-a9d10887a61d.gif)
 
 ### Create a personal access token for your Asana
 Create a [Personal Access Token](https://developers.asana.com/docs/personal-access-token) in Asana. At Asana, we created a [Guest Account](https://asana.com/guide/help/organizations/guests) to run the random one on one script, so no engineer's personal access token is used, and it's clear that there's a specific "Random one on one bot" user who is making the task updates.
