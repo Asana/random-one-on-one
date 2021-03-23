@@ -51,7 +51,7 @@ def member_name(m):
     return m["name"].strip()
 
 
-def prioritize_unmatched(members, unmatched_id):
+def prioritize_unmatched(config, members, unmatched_id):
     # Unmatched from last week gets priority
     for i, member in enumerate(members):
         if member_id(config)(member) == unmatched_id:
@@ -215,7 +215,7 @@ def generate_random_one_on_one(config, project_gid, members_section, upcoming_se
         last_run_matches = json.loads(last_run["external"]["data"])
 
     if last_run_matches.get("unmatched"):
-        prioritize_unmatched(members_tasks, last_run_matches["unmatched"])
+        prioritize_unmatched(config, members_tasks, last_run_matches["unmatched"])
 
     debug_print(config, "Creating matches for: ", [m["name"] for m in members_tasks])
     matches = ConstructMatches(
