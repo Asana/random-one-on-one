@@ -11,17 +11,28 @@ if __name__ == "__main__":
         required=True,
         help="Personal access token needed for creating the random one on ones tasks",
     )
-    parser.add_argument("--workspace-gid", type=str, required=True, help="XCXC")
+    parser.add_argument(
+        "--workspace-gid",
+        type=str,
+        required=True,
+        help="Run the script for a given workspace",
+    )
     parser.add_argument(
         "--user-gid",
         type=str,
         required=True,
-        help="User gid used to find incompleted tasks assigned to this user. Runs the script in all projects for tasks named --task-name",
+        help="User gid used to find incompleted tasks assigned to this user. The script runs in all projects with tasks named <task-name> and are assigned to the this user",
     )
 
-    parser.add_argument("--task-name", type=str, help="XCXC")
+    parser.add_argument(
+        "--task-name", type=str, required=True, help="See user-gid help"
+    )
 
-    parser.add_argument("--error-project-gid", type=str, help="XCXC")
+    parser.add_argument(
+        "--error-project-gid",
+        type=str,
+        help="Accumulate errors encountered while running the script and create a task in a given project with a error report",
+    )
 
     parser.add_argument(
         "--project",
