@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime, timedelta
 
-import oneonone.bot as oneonone
+from oneonone import oneonone
 
 
 def create_user(start_date=None, end_date=None):

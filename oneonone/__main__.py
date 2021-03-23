@@ -1,4 +1,4 @@
-from oneonone import bot
+from oneonone import oneonone
 import argparse
 
 if __name__ == "__main__":
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     print(args)
-    bot.main(
+    oneonone.main(
         args.pat,
         args.workspace_gid,
         args.user_gid,
