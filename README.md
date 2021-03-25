@@ -11,7 +11,7 @@ The project will be used to schedule and store upcoming random one on one meetin
 
 Make sure that you have created an Asana project with
 - At least 2 sections named **Members** and **Upcoming**
-- A task assigned to a user. Name the task to something destinct as the script finds all tasks with a given name assigned to this user
+- A task assigned to a user. Name the task to something distinct as the script finds all tasks with a given name assigned to this user
 
 For each member, add a task to the **Member** section and assign to a participating member.
 
@@ -30,7 +30,7 @@ Copy this Personal Access Token for the next steps.
 Either via package
 ``` python
 import asana_random_one_on_one
-asana_random_one_on_one(personal_access_token, workspace_gid, user_gid, task_name)
+asana_random_one_on_one.main(personal_access_token, workspace_gid, user_gid, task_name)
 ```
 Or, alternatively, you can clone the repo and run via command line
 
