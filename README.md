@@ -15,6 +15,24 @@ Make sure that you have created an Asana project with
 
 For each member, add a task to the **Member** section and assign to a participating member.
 
+**Optional fields**
+
+The script will schedule one on one for each member every week by default.
+By adding a custom field named "Frequency" with the following options:
+- Every week
+- Every 2 weeks
+- Every 3 weeks
+- Every 4 weeks
+- Never
+the script can skip some members based on their frequency preference.
+ 
+Have a custom fields named "Team" and "Match Preferences". Team should be a text field that can have any arbitrary string while "Match Preferences" should have:
+- No preference (default)
+- Only match with same team
+- Only match with other teams
+The script will match people based on their preference if possible.
+
+
 **We recommend saving this project as a template, so that other groups can create their own Random one on one project easily.**
 
 ![createrandomproject](https://user-images.githubusercontent.com/9914844/112172529-b333ef00-8bec-11eb-8b99-a9d10887a61d.gif)
@@ -27,6 +45,8 @@ We recommend that the personal access token be created for the same user as will
 Copy this Personal Access Token for the next steps.
 
 ### Run the script
+We recommend running the script once a week
+
 Either via package
 ``` python
 import asana_random_one_on_one
