@@ -13,6 +13,6 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     python_requires=">=3.6",
-    install_requires=["asana"],
+    install_requires=["asana>=0.10.1"],
     test_suite="tests",
 )

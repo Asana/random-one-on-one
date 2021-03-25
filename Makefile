@@ -17,7 +17,15 @@ tests:
 		python3 -m unittest test/*test*; \
 	)
 
+build:
+	( \
+		source v-env/bin/activate; \
+		python3 setup.py sdist; \
+		pip3 install twine; \
+		twine upload --repository-url https://test.pypi.org/legacy/ dist/*; \
+	)
+
 clean:
-	rm -rf v-env/
+	rm -rf v-env/ __pycache__/ dist/ asana_random_one_on_one.egg-info/
 	find . -type d -name __pycache__ -delete
 
