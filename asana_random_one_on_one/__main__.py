@@ -27,9 +27,7 @@ if __name__ == "__main__":
         type=str,
         help="User gid used to find incompleted tasks assigned to this user. The script runs in all projects with tasks named <task-name> and are assigned to the this user",
     )
-    parser.add_argument(
-        "--task-name", type=str, help="See user-gid help"
-    )
+    parser.add_argument("--task-name", type=str, help="See user-gid help")
     parser.add_argument(
         "--error-project-gid",
         type=str,

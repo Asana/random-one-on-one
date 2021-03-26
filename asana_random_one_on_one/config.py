@@ -2,7 +2,16 @@ from datetime import datetime, timedelta
 
 
 class Config(object):
-    def __init__(self, client, work_space_gid, user_gid, task_name, error_project_gid, debug, use_name_as_id):
+    def __init__(
+        self,
+        client,
+        work_space_gid,
+        user_gid,
+        task_name,
+        error_project_gid,
+        debug,
+        use_name_as_id,
+    ):
         self.client = client
         self.user_gid = user_gid
         self.work_space_gid = work_space_gid
