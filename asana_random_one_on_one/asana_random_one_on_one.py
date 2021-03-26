@@ -345,22 +345,24 @@ def report_errors(config, errors):
 def main(
     pat,
     work_space_gid,
-    user_gid,
-    task_name=None,
     project_gid=None,
+    task_name=None,
+    user_gid=None,
     error_project_gid=None,
     debug=False,
     use_name_as_id=False,
 ):
-    asana_client = asana.Client.access_token(pat)
-    config = Config(asana_client, work_space_gid, user_gid)
-    if task_name:
-        config.manage_one_on_one_project_expected_task_name = task_name
-    if error_project_gid:
-        config.error_project_gid = error_project_gid
 
-    config.debug = debug
-    config.use_name_as_id = use_name_as_id
+    if any([user_gid, task_name]):
+        if project_gid:
+            raise Exception("Either provide project_gid for a single project run or user_gid and task_name for a multiple project run")
+        if not user_gid:
+            raise Exception("Missing user_gid needed to discover projects")
+        if not task_name:
+            raise Exception("Missing task_name needed to discover projects")
+
+    asana_client = asana.Client.access_token(pat)
+    config = Config(asana_client, work_space_gid, user_gid, task_name, error_project_gid, debug, use_name_as_id)
 
     if project_gid:
         run_for_a_single_project(config, project_gid)

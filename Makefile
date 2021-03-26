@@ -26,6 +26,6 @@ build:
 	)
 
 clean:
-	rm -rf v-env/ __pycache__/ dist/ asana_random_one_on_one.egg-info/
-	find . -type d -name __pycache__ -delete
+	rm -rf v-env/ dist/ asana_random_one_on_one.egg-info/
+	find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
