@@ -24,12 +24,14 @@ By adding a custom field named "Frequency" with the following options:
 - Every 3 weeks
 - Every 4 weeks
 - Never
+
 the script can skip some members based on their frequency preference.
  
 Have a custom fields named "Team" and "Match Preferences". Team should be a text field that can have any arbitrary string while "Match Preferences" should have:
 - No preference (default)
 - Only match with same team
 - Only match with other teams
+
 The script will match people based on their preference if possible.
 
 
