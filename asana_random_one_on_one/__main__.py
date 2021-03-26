@@ -37,7 +37,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--use-name-as-id",
         action="store_true",
-        help="This will use the names of the Member tasks for id's instead of the id's of the assignee, useful when developing as will allow multiple tasks to have the same assignee",
+        help="This will use the names of the Member tasks for id instead of the id of the assignee, useful when developing as will allow multiple tasks to have the same assignee",
     )
 
     args = parser.parse_args()
