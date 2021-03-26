@@ -3,7 +3,7 @@ A coffee walk / sit down with someone helps with shaking things up and helps co-
 You can create an Asana project for your team / office / department or any internal grouping of your choice and start having random one on ones within that group.
 
 ## Quick start
-This tutorial shows how to run random one on one for a single project. If you want the script to run for multiple projects see [Run for multiple projects](#run-for-multiple-projects)
+This tutorial shows how to run random one on one for a single project. If you want the script to run for multiple projects see [Advanced setup: Run for multiple projects](#advanced-setup:-run-for-multiple-projects)
 
 ### Installation
 `pip3 install asana-random-one-on-one`
@@ -16,13 +16,21 @@ Make sure that you have created an Asana project with 2 sections named **Members
 
 For each member wishing to participate, add a task to the **Member** section and assign to a participating member.
 
+Copy the project gid from your browsers url `https://app.asana.com/0/<project_gid>/<task_gid>` for the next steps.
+
 ### Create a personal access token for your Asana
 Create a [Personal Access Token](https://developers.asana.com/docs/personal-access-token) in Asana. At Asana, we created a [Guest Account](https://asana.com/guide/help/organizations/guests) to run the random one on one script, so no engineer's personal access token is used, and it's clear that there's a specific "Random one on one bot" user who is making the task updates.
 
 Copy this Personal Access Token for the next steps.
 
+### Find your workspace gid
+You can find your workspace gids via a logged-in browser by going to https://app.asana.com/api/1.0/users/me/workspaces, or you can hit that endpoint using your PAT.
+
+Copy the gid for the workspace your project is in for the next steps.
+
 ### Run the script
-We recommend running the script once a week
+We recommend running the script once a week.
+You should now have your [project_gid](#create-an-asana-project-for-the-random-one-on-ones), [personal_access_token](#create-a-personal-access-token-for-your-asana) and [workspace_gid](#find-your-workspace-gid)
 ``` python
 import asana_random_one_on_one
 asana_random_one_on_one.main(personal_access_token, workspace_gid, project_gid=<your_project_gid>)
@@ -51,7 +59,7 @@ Have a custom fields named "**Team**" and "**Match Preferences**". Team should b
 
 The script will match people based on their preference if possible.
 
-## Run for multiple projects
+## Advanced setup: Run for multiple projects
 ### Setup
 **We recommend saving a project as a template, so that other groups can create their own Random one on one project easily.**
 
@@ -78,7 +86,9 @@ Enjoy your random one on one
 Then go through [Installing requirements](#installing-requirements)
 
 `python3 -m asana_random_one_on_one --pat=<personal_access_token> --workspace-gid=<workspace_gid> --project-gid=<project_gid>`
+
 or for multiple projects
+
 `python3 -m asana_random_one_on_one --pat=<personal_access_token> --workspace-gid=<workspace_gid> --user-gid=<user_gid> --task-name=<task_name>`
 
 
