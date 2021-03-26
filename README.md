@@ -30,6 +30,7 @@ Copy the gid for the workspace your project is in for the next steps.
 
 ### Run the script
 We recommend running the script once a week.
+
 You should now have your [project_gid](#create-an-asana-project-for-the-random-one-on-ones), [personal_access_token](#create-a-personal-access-token-for-your-asana) and [workspace_gid](#find-your-workspace-gid)
 ``` python
 import asana_random_one_on_one
@@ -74,6 +75,8 @@ For each member wishing to participate, add a task to the **Member** section and
 
 ### Run the script
 We recommend running the script once a week
+
+To find the user_gid of the user, log in as the user and go to https://app.asana.com/api/1.0/users/me
 ``` python
 import asana_random_one_on_one
 asana_random_one_on_one.main(personal_access_token, workspace_gid, user_gid=<user_gid>, task_name=<task_name>)
