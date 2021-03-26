@@ -3,7 +3,7 @@ import argparse
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Random one on one script. Will generate random one on ones in all projects created from template"
+        description="Random one on one script. Will generate random one on ones in a given project or all projects created from template"
     )
     parser.add_argument(
         "--pat",
@@ -18,7 +18,7 @@ if __name__ == "__main__":
         help="Run the script for a given workspace",
     )
     parser.add_argument(
-        "--project",
+        "--project-gid",
         type=str,
         help="The id of a particular random 1:1 project. This will only run the script on that project",
     )
