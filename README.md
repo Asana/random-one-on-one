@@ -125,8 +125,8 @@ optional arguments:
                         and create a task in a given project with a error
                         report
   --debug               Runs in debug mode
-  --use-name-as-id      This will use the names of the Member tasks for id's
-                        instead of the id's of the assignee, useful when
+  --use-name-as-id      This will use the names of the Member tasks for id
+                        instead of the id of the assignee, useful when
                         developing as will allow multiple tasks to have the
                         same assignee
 ```
