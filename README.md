@@ -31,7 +31,7 @@ Copy the gid for the workspace your project is in for the next steps.
 ### Run the script
 We recommend running the script once a week.
 
-You should now have your [project_gid](#create-an-asana-project-for-the-random-one-on-ones), [personal_access_token](#create-a-personal-access-token-for-your-asana) and [workspace_gid](#find-your-workspace-gid)
+You should now have your [project_gid](#create-an-asana-project-for-the-random-one-on-ones), [personal_access_token](#create-a-personal-access-token-for-your-asana) and [workspace_gid](#find-your-workspace-gid). **NOTE**: all gids are in the form of strings, not numbers
 ``` python
 import asana_random_one_on_one
 asana_random_one_on_one.main(personal_access_token, workspace_gid, project_gid=<your_project_gid>)
