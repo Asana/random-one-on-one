@@ -9,7 +9,8 @@ This tutorial shows how to run random one on one for a single project. If you wa
 `pip3 install asana-random-one-on-one`
 
 ### Create an Asana project for the random one on ones
-You will need to create an Asana project 
+You will need to create an Asana project
+
 The project will be used to schedule and store upcoming random one on one meetings for participating members.
 
 Make sure that you have created an Asana project with 2 sections named **Members** and **Upcoming**
@@ -135,7 +136,7 @@ optional arguments:
 
 
 ## Contributing to the project
-### Installing requirements
+### Installation requirements
 
 We recommend setting up a virtual environment to install and run your python environment. By doing so, you can eliminate
 the risk that Asana Random one on one python dependencies and settings will be mixed up with any such dependencies and settings that you
