@@ -27,7 +27,7 @@ class ConstructMatches(object):
         )
 
     def compatible_match_preferences(self, member1, member2):
-        """ Checks if match preferences between 2 given members are compatible"""
+        """Checks if match preferences between 2 given members are compatible"""
 
         no_team = "None (default)"
         m1_team = self._get_custom_field_value(member1, "Team", no_team)
