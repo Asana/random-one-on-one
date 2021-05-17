@@ -17,13 +17,21 @@ tests:
 		python3 -m unittest test/*test*; \
 	)
 
-build:
+build_test:
 	( \
 		source v-env/bin/activate; \
 		python3 setup.py sdist; \
 		pip3 install twine; \
 		twine upload --repository-url https://test.pypi.org/legacy/ dist/*; \
 	)
+
+build:
+	( \
+               source v-env/bin/activate; \
+               python3 setup.py sdist; \
+               pip3 install twine; \
+               twine upload dist/*; \
+       )
 
 clean:
 	rm -rf v-env/ dist/ asana_random_one_on_one.egg-info/
