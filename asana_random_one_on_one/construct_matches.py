@@ -187,7 +187,7 @@ class ConstructMatches(object):
         if self.unmatched_member:
             # There is a problem here. If the previous unmatched member was not a part of this weeks
             # matches, due to frequency, it will be overwritten by this weeks unmatched member
-            # https://app.asana.com/0/1148284538006491/1149538479691025/f
+            # https://github.com/Asana/random-one-on-one/issues/1
             self.match_data["unmatched"] = self.member_id(self.unmatched_member)
         elif self.match_data.get("unmatched") in [
             self.member_id(m) for m in self.matched_members
