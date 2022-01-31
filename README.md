@@ -87,7 +87,7 @@ Enjoy your random one on one
 ## Run on command line
 `git clone https://github.com/Asana/random-one-on-one.git`
 
-Then go through [Installing requirements](#installing-requirements)
+Then go through [Installation requirements](#installation-requirements)
 
 `python3 -m asana_random_one_on_one --pat=<personal_access_token> --workspace-gid=<workspace_gid> --project-gid=<project_gid>`
 
@@ -141,15 +141,10 @@ optional arguments:
 We recommend setting up a virtual environment to install and run your python environment. By doing so, you can eliminate
 the risk that Asana Random one on one python dependencies and settings will be mixed up with any such dependencies and settings that you
 may be using in other projects.
-Once you have that activated (see [Installing a Virtual Environment for Python](#installing-a-virtual-environment-for-python) below), you should install all required python dependencies using
 
-`pip3 install -r requirements.txt -r requirements-dev.txt`
+* run `python3 -m venv venv` to create a virtual environment
+* run `. venv/bin/activate` to activate and enter your virtual environment
+* run `pip3 install -r requirements.txt -r requirements-dev.txt`
 
-### Installing a Virtual Environment for Python
-
-See [these instructions](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/) for help in
-setting up a virtual environment for Python, or use the following TL;DR version:
-
-* run `python3 -m venv v-env` to create a virtual environment
-* run `source v-env/bin/activate` to activate and enter your virtual environment
-* once activated, run `deactivate` to deactivate and leave your virtual environment
+See [these instructions](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/) for further help in
+setting up a virtual environment for Python

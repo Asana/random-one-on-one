@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="asana_random_one_on_one",
     packages=["asana_random_one_on_one"],
-    version="0.0.1",
+    version="0.0.2",
     author="Asana Inc",
     license="MIT",
     description="",
