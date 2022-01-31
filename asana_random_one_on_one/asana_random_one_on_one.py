@@ -173,7 +173,9 @@ def generate_random_one_on_one(config, project_gid, members_section, upcoming_se
         "assignee.vacation_dates",
         "assignee.name",
     ]
-    members_tasks = config.client.tasks.find_by_section(members_section, opt_fields=opt_fields)
+    members_tasks = config.client.tasks.find_by_section(
+        members_section, opt_fields=opt_fields
+    )
 
     members_tasks = [
         member
